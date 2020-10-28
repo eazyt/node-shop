@@ -7,7 +7,7 @@ const orderRoutes = require('./api/routes/orders')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-
+const userRoutes = require('./api/routes/user')
 
 app.use(morgan('dev'))
 
@@ -27,6 +27,7 @@ app.use((req, res, next) => {
 
 app.use('/products', productRoutes)
 app.use('/orders', orderRoutes)
+app.use('/user', userRoutes)
 
 mongoose.connect(process.env.MONGO_URL, {
   useCreateIndex: true,
