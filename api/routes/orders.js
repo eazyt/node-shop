@@ -10,6 +10,7 @@ const Product = require('../models/product')
 router.get('/', (req, res, next) => {
   Order.find()
   .exec()
+  .populate('product')
   .then(docs => {
     res.status(200).json({
       count: docs.length,
@@ -78,6 +79,7 @@ router.get('/:orderId', (req, res, next) => {
   const orderId = req.params.orderId
   Order.findById(orderId)
   .exec()
+  .populate('product')
   .then(order => {
     if(!order) {
       return res.status(404).json({
